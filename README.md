@@ -1,7 +1,7 @@
 # CSCI571-Web-Technologies
 The USC course is to present many of the core technologies that the Web is based upon. These core technologies include:
 
-HTML and CSS (Hypertext MarkUp Language and Cascading Style Sheets)
+<li>HTML and CSS (Hypertext MarkUp Language and Cascading Style Sheets)
 HTTP (HyperText Transfer Protocol)
 Web servers, their configuration and performance properties
 Client-side Programming Using JavaScript
