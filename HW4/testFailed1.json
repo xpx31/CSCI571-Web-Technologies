@@ -1,0 +1,30 @@
+{
+  "Mainline": {
+    "Table": {
+      "Header": {
+        "Data": [
+          "Parent Company",
+          "Subsidiary Portfolio / Services",
+          "HQ / Info",
+          "Annual Revenue ($ million)",
+          "HomePage",
+          "Logo"
+        ]
+      },
+      "Row": [
+        {
+          "Company": "UPS",
+          "Services": "UPS Ground, UPS Freight",
+          "Hubs": {
+            "Hub": [
+              "UPS is a global leader in logistics, offering a broad range of solutions including the transportation of packages and freight; the facilitation of international trade, and the deployment of advanced technology to more efficiently manage the world of business."
+            ]
+          },
+          "Revenue": "",
+          "HomePage": "",
+          "Logo": ""
+        }
+      ]
+    }
+  }
+}

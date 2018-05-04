@@ -1,0 +1,217 @@
+<!DOCTYPE = HTML>
+<html class="website">
+    <head>
+        <title>mysite</title>
+<!--        stylesheet-->
+        <style type = "text/css">
+    /*initial page*/
+            #prompt{
+                position: relative;
+                top: 150px;                
+                text-align: center;
+                margin: 20px;
+            }
+            
+            #promptText{
+                font-size: 18.5px;
+                font-weight: 900;
+            }
+        </style>
+    </head>
+    
+    <body>
+<!--        javascript-->
+        <script type="text/javascript">
+            const REQUEST_SUCCESS = 200; // Denotes a successful request
+            const NOT_FOUND = 404; // Denotes a page not found
+            var URL = ""; // User defined URL       
+                    
+            // Loads the URL
+            // @URL: file name
+            // return: validated json file (contents yet to be validated)
+            function loadJSON(entry) {
+                URL = entry.jsonFile.value;
+                // validating URL
+                if (validateURL(URL) == false){
+                    return false;
+                }
+                else{
+                    // validating file and load the page
+                    var jsonFile = validateFile(URL);
+                    if(jsonFile == false){
+                        return false;
+                    }
+                    else{
+                        // validating the page content and load HTML codes
+                        var html = loadPage(jsonFile);
+                        if(html != false){
+                            var newPage = window.open("", "ABC", "height=600", width="800");
+                            newPage.document.write(html);
+                        }
+                    }
+                }
+            }
+            
+            // Validates the URL if it is correct
+            // @URL: file name
+            // return: boolean stating the correctness of URL given
+            function validateURL(URL){
+//                alert("validating URL");
+                var jsonFormat = ".json";
+//                empty URL
+                if(URL == "" || URL == null || typeof(URL) == undefined){
+                    alert("Please enter the file.")
+                    return false;
+                }
+//                not json file
+                else if(URL.endsWith(jsonFormat) == false){
+                    alert("Please enter a json file");
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+            
+            // Validates the file is correct
+            // @URL: file name
+            // return: validated file or false if file is invalid
+            function validateFile(URL){
+//                alert(URL + " is received!");
+                var xmlhttp=new XMLHttpRequest();
+                xmlhttp.open("GET",URL,false);
+
+//                validating request
+                try{
+                    // sending request
+                    xmlhttp.send();
+
+//                    file not found
+                    if(xmlhttp.status == NOT_FOUND){
+                        throw "File does not Exist";
+                    }
+//                    request fail
+                    else if(xmlhttp.status != REQUEST_SUCCESS){
+                        throw "Request Failed";
+                    }
+
+//                    validating file
+                    // receiving response                   
+                    var jsonDoc=xmlhttp.responseText;
+                    
+//                    empty file
+                    if(jsonDoc == "" || jsonDoc == null || typeof(jsonDoc) == undefined){
+                        throw "Empty File";
+                    }
+//                    parse file 
+                    else{
+                        return JSON.parse(jsonDoc);
+                    }
+                }
+                catch(err){
+                    alert("Error: " + err + ".");
+                    return false;
+                }
+            }
+            
+            // Loads the new page that has been validated
+            // @jsonDoc: json file
+            function loadPage(jsonFile){
+//                alert("Loading Page");
+                try{
+                    var tableContent = jsonFile.Mainline.Table;
+
+                    if(("Row" in tableContent) == false || isEmpty(tableContent)){
+                        throw "No trucking companies";
+                    }
+                    else{ // load valided jsonDoc
+                        return loadHTML(jsonFile);
+                    }
+                }    
+                catch(err){
+                    alert("Error: " + err + ".");
+                    return false;
+                }
+            }
+            
+            // Checks whether a given object is empty
+            // @obj: json object
+            // return: true if the object is empty, false otherwise
+            function isEmpty(obj){
+//                alert("checking json file");
+                if(obj.hasOwnProperty){
+                    return false;
+                    }
+                return true;
+            }
+            
+            // Loads HTML from jsonFile
+            // @jsonFile: jscon file
+            function loadHTML(jsonFile){
+//                alert("Loading HTML from jsonDoc: ");
+                //html head title tag
+                htmlCode = "<html><head><title>Top Trucking Companies</title></head>";
+                //body table row tag
+                htmlCode += "<body><table width = 100% border = '2'><tbody><tr>";
+                
+                table = jsonFile.Mainline.Table;
+                header = table.Header.Data;
+                row = table.Row;
+
+                if(header.length != row.length){
+                    throw "Header and Row Length Mismatch";
+                }
+
+                //headers tag
+                for(var i in header){
+                    htmlCode += "<th>" + header[i] + "</th>";
+                }
+
+                //end of 1st row (header)
+                htmlCode += "</tr>";
+
+                //rows after the header
+                for(var i in row){
+                    htmlCode += "<tr>";
+                    // Company
+                    htmlCode += "<td>" + row[i].Company + "</td>";
+                    // Services
+                    htmlCode += "<td>" + row[i].Services + "</td>";
+                    // Hubs
+                    htmlCode += "<td style ='width:25%'><ul>";
+                    var hub = row[i].Hubs.Hub;
+                    for(var k in hub){
+                        if(k == 0){
+                            htmlCode += "<li><b>" + hub[k] + "</b></li>";
+                        }
+                        else{
+                            htmlCode += "<li>" + hub[k] + "</li>";
+                        }                        
+                    }
+                    htmlCode += "</ul></td>";
+                    // Revenue
+                    htmlCode += "<td><p>" + row[i].Revenue + "</p></td>";
+                    // HomePage
+                    htmlCode += "<td><a href = '" + row[i].HomePage + "'>" + row[i].HomePage + "</a></td>";
+                    // Logo
+                    htmlCode += "<td><div style = 'align-items: center'><img src = '" + row[i].Logo + "'width = '240', height = '120'></div></td></tr>";
+                    // End of the Row
+                    htmlCode += "</tr>";
+                }
+
+                htmlCode += "</tbody></table></body></html>";
+
+                return htmlCode;
+            }
+        </script>
+        
+<!--        HTML-->
+        <form id="prompt" method='get'>
+            <p id = "promptText">Enter URL for Trucking List JSON File</p>
+            
+            <input type="text" id="jsonFile"><br><br>
+        <!--pass submitted file to javascipt-->
+            <input type="submit" value="Submit Query" onclick="loadJSON(this.form)">
+        </form>
+    </body>
+</html>
