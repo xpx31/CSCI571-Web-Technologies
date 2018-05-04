@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mapPage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapPage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <!--From Location-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="From" />
+
+        <AutoCompleteTextView
+            android:id="@+id/originText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type in the Location"
+            android:inputType="textAutoComplete|textMultiLine"
+            android:imeOptions="actionSearch"
+            android:scrollHorizontally="false"
+            android:maxLines="4"/>
+        <!--Travel Mode-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Travel mode" />
+
+        <Spinner
+            android:id="@+id/travelMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/travel_mode_spinner" />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:orientation="vertical" />
+    </LinearLayout>
+</FrameLayout>

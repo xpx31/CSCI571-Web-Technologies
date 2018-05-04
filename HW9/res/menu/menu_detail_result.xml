@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.freedom.placessearch.detailResult">
+    <item
+        android:id="@+id/twitter_share"
+        android:title="share"
+        app:showAsAction="always"
+        android:icon="@drawable/share"/>
+    <item
+        android:id="@+id/fav"
+        android:title="favorite"
+        app:showAsAction="always"
+        android:icon="@drawable/heart_outline_white"
+        android:visible="true"/>
+
+</menu>
