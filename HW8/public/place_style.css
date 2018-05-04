@@ -1,0 +1,267 @@
+.search{
+	font-family: "Arial", sans-serif;
+	width: 100%;
+	background-color: #F9F9F9;
+	border: solid 2px #EEEEEE;
+	border-radius: 5px;
+	margin: 20px auto;
+}
+/*            Search Box Title and Line          */
+#search_title{
+	font-size: 18px;
+}
+
+#search_key, #search_opt, #invalid_msg{
+	font-size: 14px;
+}
+
+.select_category, option{
+	overflow-y: hidden;
+	height: 100%
+}
+
+input.ng-dirty.ng-invalid{
+	border: 1px solid red;
+}
+
+/*            Buttons                           */
+#clear_button, #clear_button:hover, #clear_button.active{
+	color: #343A48;
+	border-color: #E1E1E1;
+	background-color: #F9F9F9;
+}
+
+/*
+#basicEntry:hover{
+	background-color: lightgray;
+}
+*/
+
+.topControlBtn{
+	display: flex;
+	justify-content: space-between;
+}
+
+.pageBtn{
+	border: 2px solid lightgray;
+}
+
+.btn-light{
+	color: black;
+	border: 1px solid black;
+	background-color: white;
+}
+
+.btn-light:disabled{
+	border: 1px solid lightgray;
+	background-color: white;
+}
+
+.rstBtn:not(:disabled):not(.disabled).active, .favBtn:not(:disabled):not(.disabled).active{
+	color: white;
+	background-color: #007BFF;
+	border: none;
+}
+
+.favBtn:not(:disabled):not(.disabled), .rstBtn:not(:disabled):not(.disabled){
+	color: #007BFF;
+	background-color: white;
+	border: none;
+}
+
+.btn-group>.btn-group:not(:last-child)>.btn, .btn-group>.btn:not(:last-child):not(.dropdown-toggle){
+	border-radius: 3px;
+}
+
+.btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:not(:first-child){
+	border-radius: 3px;
+}
+
+.favStar{
+	color: white;
+	border-color: black;
+}
+
+.star-rating{
+	white-space: nowrap;
+	display: inline-block;
+	position: relative;
+	font-size: 0.7rem;
+}
+
+.back-stars, .front-stars{
+	margin: 0;
+	padding: 0;
+}
+
+.back-stars{
+	color: transparent;
+}
+
+.front-stars{
+	position: absolute;
+	overflow: hidden;
+	color: #FFBC0B;
+	left: 0;
+	top: 0;
+}
+
+
+@media (min-width:450px){
+	.card-columns{
+		column-count: 1;
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+	}
+}
+
+@media (min-width:700px){
+	.card-columns{
+		column-count: 4;
+		-webkit-column-count: 4;
+		-moz-column-count: 4;
+	}
+}
+
+#review_time{
+	color: darkgray;
+	font-size: 0.7rem;
+}
+
+/*
+
+#map{
+	height: 500px;
+}
+*/
+
+.containers{
+	overflow: hidden;
+}
+
+.reviewContent.ng-hide-add{
+	-webkit-animation: 0.5s fadeIn ;
+	-moz-animation: 0.5s fadeIn ;
+	-o-animation: 0.5s fadeIn ;
+	-ms-animation: 0.5s fadeIn ;
+	animation: 0.5s fadeIn ;
+}
+
+.reviewContent.ng-hide-remove{
+	-webkit-animation: 0.5s fadeOut ;
+	-moz-animation: 0.5s fadeOut ;
+	-o-animation: 0.5s fadeOut ;
+	-ms-animation: 0.5s fadeOut ;
+	animation: 0.5s fadeOut ;
+}
+
+@-webkit-keyframes fadeIn{
+	0% {
+		opacity: 1; /*fully show*/ 
+	}
+	100%{
+		opacity: 0; /*fully hide*/
+	}
+}
+
+@-keyframes fadeIn{
+	0% {
+		opacity: 1; /*fully show*/ 
+	}
+	100%{
+		opacity: 0; /*fully hide*/
+	}
+}
+
+
+@-webkit-keyframes fadeOut{
+	0% {
+		opacity: 0;
+	}
+	100%{
+		opacity: 1; 
+	}
+}
+
+@-keyframes fadeOut{
+	0% {
+		opacity: 0;
+	}
+	100%{
+		opacity: 1; 
+	}
+}
+
+/*!!! ng-show and ng-hide both uses .ng-hide-add and .ng-hide-remove*/
+.animate-slideL.ng-hide-add{
+	-webkit-animation: 0.5s slide-left ease;
+	-moz-animation: 0.5s slide-left ease;
+	-o-animation: 0.5s slide-left ease;
+	-ms-animation: 0.5s slide-left ease;
+	animation: 0.5s slide-left ease;
+}
+
+.animate-slideR.ng-hide-add{
+	-webkit-animation: 0.5s slide-right ease;
+	-moz-animation: 0.5s slide-right ease;
+	-o-animation: 0.5s slide-right ease;
+	-ms-animation: 0.5s slide-right ease;
+	animation: 0.5s slide-right ease;
+}
+
+@-webkit-keyframes slide-right{
+	0% {
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translate3d(100%, 0, 0);
+		-moz-transform: translate3d(100%, 0, 0);
+		-o-transform: translate3d(100%, 0, 0);
+		-ms-transform: translate3d(100%, 0, 0);
+		transform: translate3d(100%, 0, 0);
+		opacity: 0;
+	}
+}
+@keyframes slide-right{
+	0% {
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translate3d(100%, 0, 0);
+		-moz-transform: translate3d(100%, 0, 0);
+		-o-transform: translate3d(100%, 0, 0);
+		-ms-transform: translate3d(100%, 0, 0);
+		transform: translate3d(100%, 0, 0);
+		opacity: 0;
+	}
+}
+
+
+@-webkit-keyframes slide-left{
+	0% {
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translate3d(-100%, 0, 0);
+		-moz-transform: translate3d(-100%, 0, 0);
+		-o-transform: translate3d(-100%, 0, 0);
+		-ms-transform: translate3d(-100%, 0, 0);
+		transform: translate3d(-100%, 0, 0);
+		opacity: 0;
+	}
+}
+@keyframes slide-left{
+	0% {
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: translate3d(-100%, 0, 0);
+		-moz-transform: translate3d(-100%, 0, 0);
+		-o-transform: translate3d(-100%, 0, 0);
+		-ms-transform: translate3d(-100%, 0, 0);
+		transform: translate3d(-100%, 0, 0);
+		opacity: 0;
+	}
+}
+
+
